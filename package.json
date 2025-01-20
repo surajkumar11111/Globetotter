@@ -31,7 +31,7 @@
     "camelcase-keys": "^6.2.2",
     "chalk": "^4.1.2",
     "clone-response": "^1.0.3",
-    "cloudinary": "^2.5.1",
+    "cloudinary": "^1.21.0",
     "color-convert": "^2.0.1",
     "color-name": "^1.1.4",
     "combined-stream": "^1.0.8",
@@ -217,7 +217,6 @@
     "yallist": "^4.0.0",
     "yargs-parser": "^20.2.9"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
