@@ -1,4 +1,3 @@
-
 if(process.env.NODE_ENV != "production") {
     require("dotenv").config();
 }
@@ -23,8 +22,6 @@ const reviewRouter = require("./routes/review.js");
 const User = require("./models/user.js");
 const userRouter = require("./routes/user.js")
 
-
-// const MONGO_URL = "mongodb://127.0.0.1:27017/globetotter";
 const dbUrl = process.env.ATLASDB_URL;
 
 //calling main()
@@ -48,6 +45,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname, "public")));
+
 
 const store = MongoStore.create({
     mongoUrl: dbUrl,
@@ -110,12 +108,9 @@ app.use((err, req, res, next) => {
     let {statusCode = 500, message = "something went wrong!"} = err;
     res.status(statusCode).render("listings/error.ejs", {message});
 });
-
-// app.get("/", (req, res) =>{
-//     console.log("Hi, I am the root")
-// });
+s
 
 
-app.listen("3000", () => {
-    console.log("sever is listening to port 3000");
+app.listen("5000", () => {
+    console.log("sever is listening to port 5000");
 });
