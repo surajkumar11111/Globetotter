@@ -71,7 +71,6 @@ const sessionOptions = {
 };
 
 
-
 //session/flash
 app.use(session(sessionOptions));  // Session first
 app.use(flash());  // Flash messages after session
@@ -108,7 +107,7 @@ app.use((err, req, res, next) => {
     let {statusCode = 500, message = "something went wrong!"} = err;
     res.status(statusCode).render("listings/error.ejs", {message});
 });
-s
+
 
 
 app.listen("5000", () => {

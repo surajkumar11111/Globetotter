@@ -41,6 +41,4 @@ router.route("/:id")
 router.get("/:id/edit", isLoggedIn, isOwner, WrapAsync(listingController.renderEditForm));
 
 
-
-
 module.exports = router;
