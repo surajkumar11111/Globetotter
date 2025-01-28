@@ -37,7 +37,6 @@ async function main() {
 }
 
 
-
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 // Set up middleware to parse form data
@@ -45,7 +44,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname, "public")));
-
 
 const store = MongoStore.create({
     mongoUrl: dbUrl,
@@ -70,11 +68,9 @@ const sessionOptions = {
     },
 };
 
-
 //session/flash
 app.use(session(sessionOptions));  // Session first
 app.use(flash());  // Flash messages after session
-
 app.use(passport.initialize());  
 app.use(passport.session());  
 passport.use(new LocalStrategy(User.authenticate()));
@@ -91,13 +87,10 @@ app.use((req, res, next) => {
     next();
 });
 
-
 //Middleware - for using routes
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
-
-
 
 app.all("*", (req, res, next) =>{
     next(new ExpressError(404, "Page Not Found!"));
@@ -107,7 +100,6 @@ app.use((err, req, res, next) => {
     let {statusCode = 500, message = "something went wrong!"} = err;
     res.status(statusCode).render("listings/error.ejs", {message});
 });
-
 
 
 app.listen("5000", () => {

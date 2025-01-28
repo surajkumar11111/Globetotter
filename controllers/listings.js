@@ -6,13 +6,10 @@ const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
 
-
-
 module.exports.index =  async (req, res) => {
     const allListings = await Listing.find({});
     res.render("listings/index.ejs", { allListings });
 }
-
 
 module.exports.renderNewForm = (req, res) => {
     res.render("listings/new.ejs");
@@ -31,8 +28,8 @@ module.exports.createListing = async(req, res) => {
 
     const newListing = new Listing(req.body.listing);
 
-    newListing.owner = req.user._id;//it saved currUser info inside Owner
-    newListing.image = {url, filename}//we added two value for image
+    newListing.owner = req.user._id;
+    newListing.image = {url, filename}
 
     newListing.geometry = coordinateRes.body.features[0].geometry;
 
@@ -101,11 +98,11 @@ module.exports.filterByCategory = async (req, res) => {
 
 //Search Destination
 module.exports.searchListings = async (req, res) => {
-    const { q } = req.query; // Get search query from the URL
+    const { q } = req.query;
     if (!q) {
         req.flash("error", "Please enter a search term!");
         return res.redirect("/listings");
     }
-    const listings = await Listing.find({ location: { $regex: q, $options: "i" } }); // Case-insensitive search
-    res.render("listings/index.ejs", { allListings: listings }); // Pass filtered listings to the template
+    const listings = await Listing.find({ location: { $regex: q, $options: "i" } }); 
+    res.render("listings/index.ejs", { allListings: listings }); 
 };

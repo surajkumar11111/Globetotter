@@ -5,9 +5,9 @@ const Listing = require("../models/listing");
 module.exports.createReview = async(req, res) =>{
     let listing = await Listing.findById(req.params.id);
     let newReview = new Review(req.body.review);
-    newReview.author = req.user._id;//author is var, and logged in user will author
+    newReview.author = req.user._id;
     console.log(newReview); 
-    listing.reviews.push(newReview);//pushed in review array
+    listing.reviews.push(newReview);
 
     await newReview.save();
     await listing.save();

@@ -1,63 +1,64 @@
-<style>
-  /* Search Destination */
-.search-btn{
-    background-color: #2b2b2b;
-    color: #fff;
-    border-radius: 1.2rem;
-    padding: 0 1rem 0 1rem;
-  }
-  .search-btn i{
-    display: inline;
-    margin-right: 0.5rem;
-  }
-  .search-btn:hover{
-    background-color: #2b2b2b;
-    color: #fff;
-  }
-  .search-input{
-    border-radius: 1.2rem;
-    padding-right: 1rem;
-    padding: 0.3rem 2rem 0.3rem 2rem;
-    font-size: 0.9rem;
-  }
-</style>
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/"><i class="fa-regular fa-compass"></i></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link"  href="/listings">Explore</a>
-          <a class="nav-link" href="/listings">All Listings</a>
-        </div>
+  <div class="container-fluid nav-box">
+    <a class="navbar-brand" href="/lisngs"><i class="fa-regular fa-compass"></i></a>
+    <button class="navbar-toggler" type="button" aria-label="Toggle navigation" onclick="toggleSidebar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <!-- search form -->
-        <div class="navbar-nav ms-auto">
-          <form class="d-flex" role="search" action="/listings/search" method="GET">
-            <input 
-              class="form-control me-2 search-input" 
-              type="search" 
-              name="q" 
-              placeholder="Search destinations" 
-              required>
-            <button class="btn search-btn" type="submit">
-              <i class="fa-solid fa-magnifying-glass"></i>Search
-            </button>
-          </form>
-        </div>
-        
-        <div class="navbar-nav ms-auto">
-            <a class="nav-link" href="/listings/new">Globe your home</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+
+      <!-- Search Form -->
+      <div class="navbar-nav ms-auto search-box">
+        <form class="d-flex" role="search" action="/listings/search" method="GET">
+          <input class="form-control me-2 search-input" type="search" name="q" placeholder="Search destinations"
+            required />
+          <button class="btn search-btn" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>Search
+          </button>
+        </form>
+      </div>
+
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Globe your home</a>
         <% if(!currUser){ %>
-            <a class="nav-link"  href="/signup"><b>Sign up</b></a>
-            <a class="nav-link" href="/login"><b>Log in</b></a>
-           <% } %>
+          <a class="nav-link" href="/signup"><b>Sign up</b></a>
+          <a class="nav-link" href="/login"><b>Log in</b></a>
+          <% } %>
             <% if(currUser){ %>
-                  <a class="nav-link" href="/logout">Log out</a>
+              <a class="nav-link" href="/logout">Log out</a>
               <% } %>
-        </div>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
+
+<!-- Sidebar -->
+<div id="sidebar" class="sidebar">
+  <button class="close-btn" onclick="toggleSidebar()"><i class="fa-solid fa-xmark"></i></button>
+  <a class="nav-link" href="/listings">Explore</a>
+  <!-- Search Form -->
+  <div class="navbar-nav ms-auto search-box">
+    <form class="d-flex" role="search" action="/listings/search" method="GET">
+      <input class="form-control me-2 search-input" type="search" name="q" placeholder="Destinations" required />
+      <span class="search-icon"><i class="fa-solid fa-magnifying-glass "></i></span>
+    </form>
+  </div>
+  <a class="nav-link" href="/listings/new">Globe your home</a>
+  <% if(!currUser){ %>
+    <a class="nav-link" href="/signup"><b>Sign up</b></a>
+    <a class="nav-link" href="/login"><b>Log in</b></a>
+    <% } %>
+      <% if(currUser){ %>
+        <a class="nav-link" href="/logout">Log out</a>
+        <% } %>
+</div>
+
+<script>
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('show');
+  }
+</script>
